@@ -19,26 +19,31 @@ import GreetingContainer from './GreetingContainer'
 
 // types
 export type UserType = {
-    _id: any // need to fix any
-    name: any // need to fix any
+    _id: string // Исправляем any на string
+    name: string // Исправляем any на string
 }
 
-export const pureAddUserCallback = (name: any, setUsers: any, users: any) => { // need to fix any
-    const user = { // need to fix
+export const pureAddUserCallback = (
+    name: string,
+    setUsers: (users: UserType[]) => void,
+    users: UserType[]) => {
+    const user: UserType = {
+        _id: v1(), // Генерируем уникальный id
+        name: name // Используем переданное имя
     }
     setUsers([...users, user])
 }
 
 const HW3 = () => {
-    const [users, setUsers] = useState<any>([]) // need to fix any
+    const [users, setUsers] = useState<UserType[]>([]) // Исправляем any на UserType[]
 
-    const addUserCallback = (name: any) => { // need to fix any
+    const addUserCallback = (name: string) => { // need to fix any
         pureAddUserCallback(name, setUsers, users)
     }
 
     return (
         <div id={'hw3'}>
-            <div className={s2.hwTitle}>Homework #3</div>
+            <div className={s2.hwTitle}>Input</div>
             {/*для автоматической проверки дз (не менять)*/}
 
             <div className={s2.hw}>
