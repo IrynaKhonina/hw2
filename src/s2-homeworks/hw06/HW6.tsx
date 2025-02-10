@@ -25,7 +25,7 @@ const HW6 = () => {
 
     return (
         <div id={'hw6'}>
-            <div className={s2.hwTitle}>Homework #6</div>
+            <div className={s2.hwTitle}>Редактируемый спан с сохранением в local storage</div>
 
             {/*демонстрация возможностей компоненты:*/}
             <div className={s2.hw}>
