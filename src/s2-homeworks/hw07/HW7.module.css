@@ -1,8 +1,8 @@
 .container {
-    /*display: flex;*/
+    display: flex;
     /*justify-content: space-between; !* Распределяет элементы по краям контейнера *!*/
-    /*!*align-items: flex-start; !* Выравнивает элементы по верхнему краю *!*!*/
-    /*gap: 10px; !* Расстояние между элементами *!*/
+    align-items: flex-start; /* Выравнивает элементы по верхнему краю */
+    gap: 50px; /* Расстояние между элементами */
 }
 
 
