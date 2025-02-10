@@ -9,7 +9,7 @@ type PropsType = {
     handleClose: () => void
 }
 
-export const Sidebar: FC<PropsType> = ({open, handleClose}) => {
+export const Sidebar= ({open, handleClose}:PropsType) => {
     const sidebarClass = s.sidebar
         + (open ? ' ' + s.open : '')
     return (

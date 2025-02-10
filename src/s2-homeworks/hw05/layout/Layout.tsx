@@ -6,7 +6,7 @@ type PropsType = {
     children: ReactNode
 }
 
-export const Layout: FC<PropsType> = ({ children }) => {
+export const Layout = ({ children }:PropsType) => {
     const [open, setOpen] = useState(false)
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
