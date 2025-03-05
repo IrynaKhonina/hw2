@@ -15,17 +15,23 @@ import {Loader} from './Loader'
 
 const HW10 = () => {
     // useSelector, useDispatch // пишет студент
-    const isLoading = false
+    const dispatch = useDispatch();
+    const isLoading = useSelector((state: AppStoreType) => state.loading.isLoading); // Получаем isLoading из Redux
 
     const setLoading = () => { // пишет студент // показать крутилку на 1,5 секунд
         // dispatch
+        dispatch(loadingAC(true)); // Устанавливаем isLoading в true
+
+        setTimeout(() => {
+            dispatch(loadingAC(false)); // Через 1.5 секунды устанавливаем isLoading в false
+        }, 1500);
 
         // setTimeout
     }
 
     return (
         <div id={'hw10'}>
-            <div className={s2.hwTitle}>Homework #10</div>
+            <div className={s2.hwTitle}>Loading...</div>
 
             <div className={s2.hw}>
                 {isLoading ? (
@@ -36,6 +42,7 @@ const HW10 = () => {
                     <SuperButton
                         id={'hw10-button-start-loading'}
                         onClick={setLoading}
+                        style={{ width: '154px', height: '40px', fontSize: '14px', marginTop: '20px' }}
                     >
                         Set loading...
                     </SuperButton>
