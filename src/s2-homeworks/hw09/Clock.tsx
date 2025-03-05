@@ -13,26 +13,43 @@ function Clock() {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
 
+        if (timerId !== undefined) return; // Если таймер уже запущен, ничего не делаем
+
+        const id = setInterval(() => {
+            setDate(new Date()); // Обновляем состояние даты каждую секунду
+        }, 1000);
+
+        setTimerId(Number(id)); // Сохраняем ID таймера
+
     }
 
     const stop = () => {
         // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
 
+        if (timerId === undefined) return; // Если таймер не запущен, ничего не делаем
+
+        clearInterval(timerId); // Останавливаем таймер
+        setTimerId(undefined); // Сбрасываем ID таймера
     }
 
     const onMouseEnter = () => { // пишут студенты // показать дату если наведена мышка
-
+        setShow(true); // Показываем дату
     }
     const onMouseLeave = () => { // пишут студенты // спрятать дату если мышка не наведена
-
+        setShow(false); // Скрываем дату
     }
 
-    const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    // const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
+    // const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    //
+    // // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
+    // const stringDay = 'date->day' || <br/> // пишут студенты
+    // const stringMonth = 'date->month' || <br/> // пишут студенты
 
-    // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
-    const stringDay = 'date->day' || <br/> // пишут студенты
-    const stringMonth = 'date->month' || <br/> // пишут студенты
+    const stringTime = date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+    const stringDate = date.toLocaleDateString('ru-RU', {day: '2-digit', month: '2-digit', year: 'numeric'});
+    const stringDay = date.toLocaleDateString('en-US', {weekday: 'long'});
+    const stringMonth = date.toLocaleDateString('en-US', {month: 'long'});
 
     return (
         <div className={s.clock}>
@@ -66,14 +83,14 @@ function Clock() {
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер запущен
+                    disabled={timerId !== undefined} // пишут студенты // задизэйблить если таймер запущен
                     onClick={start}
                 >
                     start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={timerId === undefined} // пишут студенты // задизэйблить если таймер не запущен
                     onClick={stop}
                 >
                     stop
