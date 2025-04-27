@@ -15,13 +15,24 @@ function HW11() {
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
 
-    const change = (event: any, value: any) => {
+    const change = (event: Event, newValue: number | number[]) => {
         // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
+        if (typeof newValue === 'number') {
+            setValue1(newValue)
+        }
     }
+
+    const handleDoubleSliderChange = (event: Event, newValue: number | number[]) => {
+        if (Array.isArray(newValue)) {
+            setValue1(newValue[0])
+            setValue2(newValue[1])
+        }
+    }
+
 
     return (
         <div id={'hw11'}>
-            <div className={s2.hwTitle}>Homework #11</div>
+            <div className={s2.hwTitle}>Ползунок</div>
 
             <div className={s2.hw}>
                 <div className={s.container}>
@@ -30,6 +41,8 @@ function HW11() {
                         <SuperRange
                             id={'hw11-single-slider'}
                             // сделать так чтоб value1 изменялось // пишет студент
+                            value={value1}
+                            onChange={change}
 
                         />
                     </div>
@@ -38,6 +51,10 @@ function HW11() {
                         <SuperRange
                             id={'hw11-double-slider'}
                             // сделать так чтоб value1/2 изменялось // пишет студент
+                            value={[value1, value2]}
+                            onChange={handleDoubleSliderChange}
+                            min={0}
+                            max={100}
 
                         />
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
