@@ -13,7 +13,7 @@ export type SuperDebouncedInputPropsType = Omit<DefaultInputPropsType, 'type'> &
     onEnter?: () => void
     error?: ReactNode
     spanClassName?: string
-} // илм экспортировать тип SuperInputTextPropsType
+} // илм экспортировать тип SuperInputTextPropsTypek
     & { // плюс специальный пропс SuperPagination
     onDebouncedChange?: (value: string) => void
 }
