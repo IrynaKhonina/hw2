@@ -27,7 +27,7 @@ type ParamsType = {
     count: number
 }
 
-const getTechs = (params: ParamsType) => {
+const getTechs = (params: Partial<ParamsType>) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
             'https://samurai.it-incubator.io/api/3.0/homework/test3',
@@ -47,7 +47,7 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = (params: Partial<ParamsType>) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
