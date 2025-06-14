@@ -1,27 +1,50 @@
 .tech {
     width: 50vw;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    font-weight: 500;
 }
 
 .developer {
-
+    width: 50vw;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    font-style: italic;
 }
 
 .techHeader {
     width: 50vw;
+    padding: 8px;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #aaa;
 }
 
-.developerHeader {
 
+.developerHeader {
+    width: 50vw;
+    padding: 8px;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #aaa;
 }
 
 .row {
     display: flex;
+    align-items: center;
+    min-height: 40px;
 }
+
 
 .rowHeader {
     display: flex;
+    background-color: #e0e0e0;
+    font-size: 16px;
 }
 
 .loading {
-
+    color: #1976d2;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
 }

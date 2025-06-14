@@ -47,48 +47,69 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
-    const sendQuery = (params: any) => {
+    const sendQuery = (params: ParamsType) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
                 // делает студент
-
+                if (res) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
                 // сохранить пришедшие данные
-
-                //
             })
+            .finally(() => setLoading(false))
+                //
+
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
         // setPage(
         // setCount(
-
         // sendQuery(
         // setSearchParams(
+        setPage(newPage)
+        setCount(newCount)
+        sendQuery({sort, page: newPage, count: newCount})
+        setSearchParams({
+            sort,
+            page: String(newPage),     // ✅ привели к строке
+            count: String(newCount),   // ✅ привели к строке
+        })
 
         //
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
-
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
-
         // sendQuery(
         // setSearchParams(
-
+        setSort(newSort)
+        setPage(1)
+        sendQuery({sort: newSort, page: 1, count})
+        setSearchParams({
+            sort: newSort,
+            page: '1',
+            count: String(count),
+        })
         //
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
-        setPage(+params.page || 1)
-        setCount(+params.count || 4)
+        const actualSort = params.sort || ''
+        const actualPage = +params.page || 1
+        const actualCount = +params.count || 4
+
+        setSort(actualSort)
+        setPage(actualPage)
+        setCount(actualCount)
+        sendQuery({sort: actualSort, page: actualPage, count: actualCount})
     }, [])
+
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
