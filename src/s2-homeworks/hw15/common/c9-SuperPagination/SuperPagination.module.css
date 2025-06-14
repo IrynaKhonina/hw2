@@ -1,17 +1,20 @@
 .pagination {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    margin: 20px 0;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
 }
 
 .text1 {
-    margin-left: 10px;
-    font-size: 14px;
+    margin-right: 10px;
 }
 
 .text2 {
-    margin-left: 5px;
-    font-size: 14px;
+    margin-left: 6px;
 }
