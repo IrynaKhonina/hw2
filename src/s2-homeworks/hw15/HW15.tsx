@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useLayoutEffect, useState } from 'react'
+import {useEffect, useLayoutEffect, useState} from 'react'
 import { useSearchParams } from 'react-router-dom'
 import s2 from '../../s1-main/App.module.css'
 import loadingIcon from './common/assets/loading.png'
@@ -96,12 +96,16 @@ const HW15 = () => {
     //
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const params = Object.fromEntries(searchParams)
-    sendQuery({ page: +params.page || 1, count: +params.count || 4 })
+    const actualSort = params.sort || ''
+    const actualPage = +params.page || 1
+    const actualCount = +params.count || 4
 
-    setPage(+params.page || 1)
-    setCount(+params.count || 4)
+    setSort(actualSort)
+    setPage(actualPage)
+    setCount(actualCount)
+    sendQuery({ sort: actualSort, page: actualPage, count: actualCount })
   }, [])
 
   const mappedTechs = techs.map((t) => (
