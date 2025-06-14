@@ -70,14 +70,18 @@ const HW15 = () => {
         setPage(newPage)
         setCount(newCount)
 
-        sendQuery({ page: newPage, count: newCount })
-        setSearchParams({ page: String(newPage), count: String(newCount), sort })
-        // делает студент
-        // setPage(
-        // setCount(
-        // sendQuery(
-        // setSearchParams(
-        //
+        const params: Partial<ParamsType> = {
+            page: newPage,
+            count: newCount,
+            sort,
+        }
+
+        sendQuery(params)
+        setSearchParams({
+            page: String(newPage),
+            count: String(newCount),
+            sort,
+        })
     }
 
     const onChangeSort = (newSort: string) => {
