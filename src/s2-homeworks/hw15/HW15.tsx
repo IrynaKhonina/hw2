@@ -37,7 +37,6 @@ const getTechs = (params: ParamsType) => {
             alert(e.response?.data?.errorText || e.message)
         })
 }
-
 const HW15 = () => {
     const [sort, setSort] = useState('')
     const [page, setPage] = useState(1)
@@ -56,11 +55,14 @@ const HW15 = () => {
                     setTechs(res.data.techs)
                     setTotalCount(res.data.totalCount)
                 }
-                // сохранить пришедшие данные
-            })
-            .finally(() => setLoading(false))
-                //
 
+                // делает студент
+                // сохранить пришедшие данные
+                //
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
@@ -69,6 +71,7 @@ const HW15 = () => {
         // setCount(
         // sendQuery(
         // setSearchParams(
+
         setPage(newPage)
         setCount(newCount)
         sendQuery({sort, page: newPage, count: newCount})
